@@ -1,0 +1,9 @@
+[tool.ruff]
+# Длина строки (как в Black)
+line-length = 88
+# Какие проверки включить (E - ошибки, F - логика, I - сортировка импортов)
+select = ["E", "F", "I"]
+
+[tool.ruff.format]
+# Использовать двойные кавычки (стандарт Black)
+quote-style = "double"
