@@ -1,33 +1,23 @@
-"""
-
-Большое спасибо за интерес к нашей компании! К сожалению, сейчас мы не готовы пригласить вас на следующий этап. Ценим ваше внимание и будем рады взаимодействию в будущем.
-
-Комментарий к ТЗ: В проекте есть readme,, файл с зависимостями. В проекте нет .gitignore,
- линтера или форматтера. вся функциональность в одном файле.
-   Используется контекстный менеджер, что верно. Аннотации используются.
-. Используется @pytest.fixture.
-             Не используется @pytest.mark.parametrize. Есть серьёзные нарушения PEP-8.
-"""
-
 import argparse
-import csv
-from tabulate import tabulate
-from statistics import median
-from datetime import datetime
-from abc import ABC, abstractmethod
-from dataclasses import dataclass
 import sys
-from typing import List,Dict,TypedDict
-import Reports
+
+from tabulate import tabulate
+
 import DataLoader
+import Reports
 
 
 def main():
     parser = argparse.ArgumentParser(description="Reports Generator")
-    parser.add_argument('--files', nargs='+', required=True, help = 'Path to CSV files')
+    parser.add_argument("--files", nargs="+", required=True, help="Path to CSV files")
     report_choices = list(Reports.REPORTS_MAP.keys())
-    parser.add_argument('--report', type=str,choices=report_choices,
-                        required=True, help = f"Report Name. Allowed Reports: {", ".join(report_choices)}")
+    parser.add_argument(
+        "--report",
+        type=str,
+        choices=report_choices,
+        required=True,
+        help=f"Report Name. Allowed Reports: {', '.join(report_choices)}",
+    )
     args = parser.parse_args()
 
     try:
@@ -56,6 +46,7 @@ def main():
 
     print(tabulate(report_body, headers=report_headers, tablefmt="fancy_grid"))
     print("\n")
+
 
 if __name__ == "__main__":
     main()
